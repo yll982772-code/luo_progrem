@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><title>勇者传说</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#0a0a2e;color:#fff;min-height:100vh;overflow-x:hidden}
+.scr{display:none;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:16px}
+.scr.on{display:flex}
+.card{width:100%;max-width:380px;background:rgba(20,15,50,0.92);border:2px solid rgba(255,215,0,0.2);border-radius:16px;padding:28px 22px;text-align:center}
+.tit{font-size:26px;font-weight:bold;color:#ffd700;margin-bottom:6px;text-shadow:0 0 15px rgba(255,215,0,0.3)}
+.sub{font-size:14px;color:#ccbbff;margin-bottom:20px}
+.rw{display:flex;align-items:center;margin-bottom:14px}
+.rw label{width:70px;font-size:13px;color:#bbaacc;text-align:right;margin-right:8px}
+.rw input{flex:1;height:40px;background:rgba(0,0,0,0.35);border:2px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;font-size:14px;padding:0 12px;outline:none}
+.rw input:focus{border-color:rgba(255,215,0,0.5)}
+.cap{display:inline-block;background:repeating-linear-gradient(45deg,#1a1040,#1a1040 4px,#221450 4px,#221450 8px);color:#ffdd44;font-size:20px;letter-spacing:5px;padding:8px 16px;border-radius:8px;border:2px dashed rgba(255,215,0,0.35);cursor:pointer;margin:6px 0 16px}
+.btn{display:block;width:100%;height:46px;line-height:46px;border:none;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:14px;text-align:center}
+.bg{background:linear-gradient(135deg,#ffd700,#ff8c00);color:#3a2000}
+.bp{background:linear-gradient(135deg,#9944ff,#6622cc);color:#fff}
+.lk{font-size:13px;color:#aa99dd;margin-top:14px;cursor:pointer;text-decoration:underline}
+.pts{font-size:22px;font-weight:bold;color:#ffd700;margin-bottom:18px}
+.arw{display:flex;align-items:center;margin-bottom:16px}
+.arw span:first-child{width:65px;font-size:13px;color:#ccbbff;text-align:right;margin-right:8px}
+.arw input{width:56px;height:36px;background:rgba(0,0,0,0.35);border:2px solid rgba(255,255,255,0.12);border-radius:6px;color:#fff;font-size:14px;text-align:center;outline:none;margin:0 5px}
+.arw .hi{font-size:10px;color:#778;flex:1}
+.arw .st{font-size:12px;color:#889}
+.btbg{background:linear-gradient(180deg,#1a0a3e 0,#2d1050 40%,#3a2060 70%,#1a3020 100%)}
+.btop{width:100%;display:flex;justify-content:space-between;padding:8px 14px;font-size:12px;color:#ccbbff}
+.fld{flex:1;width:100%;display:flex;align-items:center;justify-content:space-around;padding:8px;position:relative}
+.csl{display:flex;flex-direction:column;align-items:center;width:130px}
+.hpw{width:100%;margin-bottom:5px}
+.hpn{font-size:11px;color:#ccbbff;text-align:center;display:block}
+.hpo{width:100%;height:8px;background:#333;border-radius:4px;overflow:hidden}
+.hpi{height:100%;border-radius:4px;transition:width .3s}
+.hpp{font-size:10px;color:#fff;text-align:center;display:block;margin-top:2px}
+.cbx{width:85px;height:105px;border-radius:14px;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 4px 15px rgba(0,0,0,0.3)}
+.cbx .hd{position:absolute;top:5px;left:50%;transform:translateX(-50%);width:36px;height:36px;background:#ffcc88;border-radius:50%}
+.cbx .hd::before,.cbx .hd::after{content:"";position:absolute;top:13px;width:5px;height:6px;background:#333;border-radius:50%}
+.cbx .hd::before{left:8px}.cbx .hd::after{right:8px}
+.cbx .hd .mh{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:10px;height:4px;border-bottom:2px solid #c64;border-radius:0 0 5px 5px}
+.vs{font-size:22px;font-weight:bold;color:#ffd700;text-shadow:0 0 10px rgba(255,215,0,0.4)}
+.lga{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);text-align:center;max-width:280px}
+.lgt{display:block;font-size:13px;color:#fff;background:rgba(0,0,0,0.5);padding:4px 10px;border-radius:6px;margin-bottom:3px}
+.dmg{color:#ff6644;font-size:20px;font-weight:bold;animation:pop .8s forwards}
+.dmg.hl{color:#44ff44}
+@keyframes pop{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-25px)}}
+@keyframes atkR{0%{transform:translateX(0)}40%{transform:translateX(30px)}100%{transform:translateX(0)}}
+@keyframes atkL{0%{transform:translateX(0)}40%{transform:translateX(-30px)}100%{transform:translateX(0)}}
+@keyframes hitS{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+.ar{animation:atkR .35s ease}.al{animation:atkL .35s ease}.hs{animation:hitS .35s ease}
+.skb{width:100%;display:flex;justify-content:space-around;padding:10px;gap:8px}
+.sk{flex:1;height:48px;border-radius:10px;border:2px solid rgba(255,255,255,0.15);background:rgba(20,10,50,0.7);color:#fff;font-size:13px;font-weight:bold;cursor:pointer}
+.sk:disabled{opacity:.35}
+/* Character body colors */
+.player .hd,.warrior .hd,.assassin .hd,.tank .hd,.mage .hd{background:#ffcc88}
+.player{background:linear-gradient(135deg,#ffe066,#ff9900)}
+.warrior{background:linear-gradient(135deg,#4488ff,#2266cc)}
+.assassin{background:linear-gradient(135deg,#7744cc,#442288)}
+.tank{background:linear-gradient(135deg,#99aabb,#667788)}
+.mage{background:linear-gradient(135deg,#cc44aa,#8822aa)}
+.ovl{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:10}
+.ovc{width:85%;max-width:320px;background:rgba(20,15,50,0.95);border:2px solid rgba(255,215,0,0.2);border-radius:16px;padding:26px;text-align:center}
+.ric{font-size:44px;margin-bottom:6px}
+.rti{font-size:24px;font-weight:bold;margin-bottom:10px}
+.rin{font-size:14px;color:#ccbbff;margin-bottom:18px;line-height:1.7}
+.stb{background:rgba(0,0,0,0.4);border-radius:8px;padding:16px;margin:14px 0;line-height:1.8;font-size:14px;color:#ccbbff}
+.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);padding:10px 24px;border-radius:10px;font-size:14px;z-index:100;color:#fff;opacity:0;transition:opacity .3s}
+.toast.ok{background:#2a4;opacity:1}
+.toast.er{background:#d33;opacity:1}
+</style></head><body>
+<div class="scr on" id="scr-login"><div class="card"><div class="tit">勇者传说</div><div class="sub">文字回合制格斗游戏</div><div class="rw"><label>用户名</label><input id="lu" placeholder="请输入用户名" maxlength="16"></div><div class="rw"><label>密码</label><input id="lp" type="password" placeholder="请输入密码" maxlength="8"></div><div class="rw"><label>验证码</label><input id="lc" placeholder="请输入验证码" maxlength="5"></div><div class="cap" id="cb">ABCD1</div><button class="btn bg" onclick="doLogin()">登 录</button><div class="lk" onclick="goScreen('register')">没有账号？去注册</div></div></div>
+<div class="scr" id="scr-register"><div class="card"><div class="tit">注册账号</div><div class="rw"><label>用户名</label><input id="ru" placeholder="3到16位含字母" maxlength="16"></div><div class="rw"><label>密码</label><input id="rp1" type="password" placeholder="3到8位字母加数字" maxlength="8"></div><div class="rw"><label>确认密码</label><input id="rp2" type="password" placeholder="请再次输入" maxlength="8"></div><button class="btn bg" onclick="doRegister()">注 册</button><div class="lk" onclick="goScreen('login')">已有账号？去登录</div></div></div>
+<div class="scr" id="scr-create"><div class="card"><div class="tit">创建角色</div><div class="sub">手动输入属性点数（合计20点）</div><div class="pts" id="rp">剩余属性点：20</div><div class="arw"><span>生命值</span><input type="number" id="ah" value="5" oninput="upAttr()"><span class="hi">每点+10HP</span><span class="st">HP: <b id="ph">150</b></span></div><div class="arw"><span>攻击力</span><input type="number" id="aa" value="8" oninput="upAttr()"><span class="hi">每点+2ATK</span><span class="st">ATK: <b id="pa">26</b></span></div><div class="arw"><span>防御力</span><input type="number" id="ad" value="7" oninput="upAttr()"><span class="hi">每点+1DEF</span><span class="st">DEF: <b id="pd">7</b></span></div><button class="btn bg" onclick="startGame()">开始游戏</button></div></div>
+<div class="scr btbg" id="scr-battle"><div class="btop"><span>胜场：<b id="wc">0</b></span><span>第 <b id="bn">1</b> 场</span><span>第 <b id="rn">1</b> 回合</span></div><div class="fld"><div class="csl" id="ps"><div class="hpw"><span class="hpn" id="pnl">勇者</span><div class="hpo"><div class="hpi" id="pbr" style="width:100%;background:#4d4"></div></div><span class="hpp" id="php">100/100</span></div><div class="cbx player" id="pch"><div class="hd"><div class="mh"></div></div></div></div><div class="vs">VS</div><div class="lga" id="la"></div><div class="csl" id="es"><div class="hpw"><span class="hpn" id="enl">敌人</span><div class="hpo"><div class="hpi" id="ebr" style="width:100%;background:#4d4"></div></div><span class="hpp" id="ehp">80/80</span></div><div class="cbx warrior" id="ech"><div class="hd"><div class="mh"></div></div></div></div></div><div class="skb" id="skb"><button class="sk" onclick="playerAction(0)">普通攻击</button><button class="sk" onclick="playerAction(1)">强力一击</button><button class="sk" onclick="playerAction(2)">生命汲取</button></div><div class="ovl" id="ov" style="display:none"><div class="ovc"><div class="ric" id="ri"></div><div class="rti" id="rt"></div><div class="rin" id="rinf"></div><button class="btn bg" id="bco" onclick="continueBattle()" style="display:none">继续下一场游戏</button><button class="btn bp" id="ben" onclick="endGame()">结束游戏</button></div></div></div>
+<div class="scr" id="scr-thanks"><div class="card"><div class="tit">感谢你的游玩！</div><div class="stb" id="sb"></div><div class="sub">期待你的再次挑战，勇者！</div><button class="btn bg" onclick="restartGame()">重新开始</button></div></div>
+<div class="toast" id="to"></div>
+<script>
+var E=[{n:"初级战士",h:80,m:80,a:15,d:10,s:"猛击",c:"warrior"},{n:"敏捷刺客",h:60,m:60,a:20,d:5,s:"快速攻击",c:"assassin"},{n:"重装坦克",h:120,m:120,a:10,d:10,s:"防御姿态",c:"tank"},{n:"神秘法师",h:70,m:70,a:25,d:8,s:"火球术",c:"mage"}];
+var U=JSON.parse(localStorage.fg_u||"[]"),CU=null,PL=null,EM=null,EL=[],W=0,BC=1,RO=1,CP="";
+function goScreen(id){document.querySelectorAll(".scr").forEach(function(s){s.classList.remove("on")});document.getElementById("scr-"+id).classList.add("on")}
+function $(id){return document.getElementById(id)}
+function toast(m,o){var t=$("to");t.textContent=m;t.className="toast "+(o?"ok":"er");setTimeout(function(){t.className="toast"},1800)}
+function rc(){var c="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789",s="";for(var i=0;i<5;i++)s+=c[Math.floor(Math.random()*c.length)];CP=s;$("cb").textContent=s}
+rc();
+function doLogin(){var u=$("lu").value.trim(),p=$("lp").value,cap=$("lc").value.trim();if(!u||!p)return toast("请输入用户名和密码",0);if(cap.toLowerCase()!==CP.toLowerCase()){rc();$("lc").value="";return toast("验证码错误",0)}var x=U.find(function(e){return e.n===u});if(!x)return toast("用户不存在",0);if(!x.s)return toast("账号已禁用",0);if(x.p!==p)return toast("密码错误",0);CU=x;toast("登录成功！",1);setTimeout(function(){goScreen("create")},500)}
+function doRegister(){var u=$("ru").value.trim(),p1=$("rp1").value,p2=$("rp2").value;if(u.length<3||u.length>16)return toast("用户名3到16位",0);if(!/[a-zA-Z]/.test(u))return toast("用户名需含字母",0);if(U.find(function(e){return e.n===u}))return toast("用户名已存在",0);if(p1.length<3||p1.length>8)return toast("密码3到8位",0);if(!/[a-zA-Z]/.test(p1)||!/[0-9]/.test(p1))return toast("密码需字母加数字",0);if(p1!==p2)return toast("两次密码不一致",0);U.push({n:u,p:p1,s:!0});localStorage.fg_u=JSON.stringify(U);toast("注册成功！",1);setTimeout(function(){goScreen("login");$("ru").value="";$("rp1").value="";$("rp2").value=""},500)}
+function upAttr(){var h=parseInt($("ah").value)||0,a=parseInt($("aa").value)||0,d=parseInt($("ad").value)||0,r=20-(h+a+d);$("rp").textContent="剩余属性点："+Math.max(0,r);$("ph").textContent=100+h*10;$("pa").textContent=10+a*2;$("pd").textContent=d}
+function cd(a,d){return Math.max(a-d,1)}
+function startGame(){var h=parseInt($("ah").value)||0,a=parseInt($("aa").value)||0,d=parseInt($("ad").value)||0;if(h+a+d!==20)return toast("必须刚好分配20点属性！",0);PL={h:100+h*10,m:100+h*10,a:10+a*2,d:d};EL=[];for(var i=0;i<E.length;i++){var s=E[i];EL.push({n:s.n,h:s.h,m:s.m,a:s.a,d:s.d,s:s.s,c:s.c})}W=0;BC=1;$("pnl").textContent="勇者 "+CU.n;$("pch").className="cbx player";goScreen("battle");$("ov").style.display="none";startBattle()}
+function startBattle(){if(W>0)EL.forEach(function(e){e.m+=10;e.h=e.m;e.a+=3;e.d+=2;e.df=!1});var t=EL[Math.floor(Math.random()*EL.length)];EM={n:t.n,h:t.h,m:t.m,a:t.a,d:t.d,s:t.s,c:t.c,df:!1};RO=1;$("wc").textContent=W;$("bn").textContent=BC;$("rn").textContent=RO;$("enl").textContent=EM.n;$("ech").className="cbx "+EM.c;uh();$("la").innerHTML='<span class="lgt">第'+BC+"场战斗！对手："+EM.n+"</span>";$("ov").style.display="none";sb(!1);$("skb").style.display="flex"}
+function uh(){var pp=Math.max(Math.round(PL.h/PL.m*100),0),ep=Math.max(Math.round(EM.h/EM.m*100),0);$("pbr").style.width=pp+"%";$("pbr").style.background=pp>50?"#4d4":pp>25?"#dd4":"#f44";$("php").textContent=PL.h+"/"+PL.m;$("ebr").style.width=ep+"%";$("ebr").style.background=ep>50?"#4d4":ep>25?"#dd4":"#f44";$("ehp").textContent=EM.h+"/"+EM.m}
+function sb(v){document.querySelectorAll(".sk").forEach(function(b){b.disabled=v})}
+function lg(m){var l=document.createElement("span");l.className="lgt";l.textContent=m;$("la").appendChild(l);while($("la").children.length>4)$("la").removeChild($("la").firstChild)}
+function pd(v,hl){var d=document.createElement("span");d.className="dmg"+(hl?" hl":"");d.textContent=(hl?"+":"-")+v;$("la").appendChild(d);setTimeout(function(){d.remove()},800)}
+function V(id,c){var e=$(id);e.classList.add(c);setTimeout(function(){e.classList.remove(c)},350)}
+function playerAction(si){sb(!0);V("ps","ar");if(si===0){var d=cd(PL.a,EM.d);if(EM.df){d=Math.max(Math.floor(d/2),1);EM.df=!1}EM.h=Math.max(EM.h-d,0);uh();pd(d,0);V("es","hs");lg("对"+EM.n+"造成了"+d+"点伤害！");if(EM.h<=0){ow();return}}else if(si===1){if(PL.h<=10){sb(!1);return lg("HP不足10！")}PL.h-=10;uh();var d=cd(Math.floor(PL.a*1.8),EM.d);if(EM.df){d=Math.max(Math.floor(d/2),1);EM.df=!1}EM.h=Math.max(EM.h-d,0);uh();pd(d,0);V("es","hs");lg("强力一击造成"+d+"点伤害！");if(EM.h<=0){ow();return}}else{if(PL.h<=10){sb(!1);return lg("HP不足10！")}PL.h-=10;uh();var h=Math.floor(Math.random()*31)+20;PL.h=Math.min(PL.h+h,PL.m);uh();pd(h,1);lg("生命汲取恢复了"+h+"点HP！")}setTimeout(et,600)}
+function et(){V("es","al");var a=Math.random()>=0.5?EM.s:"普通攻击";if(a==="普通攻击"){var d=cd(EM.a,PL.d);PL.h=Math.max(PL.h-d,0);uh();pd(d,0);V("ps","hs");lg("受到"+d+"点伤害！")}else if(a==="猛击"){var d=cd(Math.floor(EM.a*1.5),PL.d);PL.h=Math.max(PL.h-d,0);uh();pd(d,0);V("ps","hs");lg("猛击造成"+d+"点伤害！")}else if(a==="快速攻击"){var d=0;for(var i=0;i<2;i++){var t=cd(Math.floor(EM.a/2),PL.d);d+=t;PL.h=Math.max(PL.h-t,0)}uh();pd(d,0);V("ps","hs");lg("快速攻击造成"+d+"点伤害！")}else if(a==="防御姿态"){EM.df=!0;lg("敌人进入防御姿态！（下次受伤减半）")}else if(a==="火球术"){var d=cd(Math.floor(EM.a*1.8),PL.d);PL.h=Math.max(PL.h-d,0);uh();pd(d,0);V("ps","hs");lg("火球术造成"+d+"点伤害！")}if(PL.h<=0){ol();return}RO++;$("rn").textContent=RO;sb(!1);lg("第"+RO+"回合 -- 轮到你了！")}
+function ow(){W++;$("wc").textContent=W;var h=Math.floor(Math.random()*21)+20;PL.h=Math.min(PL.h+h,PL.m);if(W>0&&W%3===0){PL.m+=30;PL.h=Math.min(PL.h+30,PL.m);PL.a+=5;PL.d+=3}uh();lg("你击败了"+EM.n+"！");$("skb").style.display="none";$("ri").textContent="胜利";$("rt").textContent="战斗胜利！";$("rt").style.color="#ffd700";$("rinf").innerHTML="击败了 <b>"+EM.n+"</b><br>当前胜场：<b>"+W+"</b><br>当前HP：<b>"+PL.h+"/"+PL.m+"</b>";$("bco").style.display="block";$("ov").style.display="flex"}
+function ol(){$("skb").style.display="none";$("ri").textContent="失败";$("rt").textContent="战斗失败";$("rt").style.color="#f44";$("rinf").innerHTML="被 <b>"+EM.n+"</b> 击败<br>总胜场：<b>"+W+"</b>";$("bco").style.display="none";$("ov").style.display="flex"}
+function continueBattle(){BC++;startBattle()}
+function endGame(){$("sb").innerHTML="玩家："+CU.n+"<br>总胜场："+W+" | 总战斗："+BC+"<br>最终属性 HP:"+PL.h+"/"+PL.m+" ATK:"+PL.a+" DEF:"+PL.d;goScreen("thanks")}
+function restartGame(){PL=null;EM=null;W=0;BC=1;goScreen("login");$("lu").value="";$("lp").value="";$("lc").value="";rc()}
+</script></body></html>
